@@ -1,19 +1,23 @@
-//Setup
+const { Receiver } = require('aoi.db');
+const {inspect} = require("util");
+const rec = new Receiver({
+  logEncrypt: "a-32-characters-long-string-here",
+  logPath: "./logs/",
+  wsOptions: {
+    port: 443,
+    clientTracking: true,
+  },
+  whitelistedIps: "*",
+});
 
-/*This is for custom database, all you have to just create a cluster on mongoDB (Atlas) and then paste your cluster link to your secret as the key "CLUSTER", value is your url.
+rec.connect();
+rec.on("connect", () => {
+  console.log("connected");
+});
+rec.on("message", (msg) => {
+  console.log(`[RECEIVER] => ${inspect(msg, { depth: null })}`);
+});
 
-const mongoose = require('mongoose')
-const mongo = require('dbdjs.mongo').default
-mongoose.connect(process.env.CLUSTER, {
- useNewUrlParser: true,
- useUnifiedTopology: true,
- useFindAndModify: false,
- keepAlive: true
-})
-
-mongo.createModel('main') */
-
-//This is keep your bot alive 24/7 after connected to an uptimer service. Explained a little bit on server.js.
 const keepAlive = require('./server.js');
 
 const aoijs = require('aoi.js'); //We're authorized "aoijs" as our bot in here, you can type anything you want. 
@@ -67,12 +71,6 @@ loader.setColors({
  
 })
 
-
-//Events, are most important stuffs for us. it's used as "type" on most of codes, but I think separating it would be better so here you go. 
-const files = fs.readdirSync('./events').filter(file => file.endsWith('js'))
-files.forEach( x => {
-	require(`./events/${x}`)(bot)
-});
 
 //Don't ever delete this.
 keepAlive()

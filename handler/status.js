@@ -1,5 +1,4 @@
 module.exports = (bot) => {
-
 	bot.status({
 		text: "$userTag[$clientID] is back",
 		type: "LISTENING", 

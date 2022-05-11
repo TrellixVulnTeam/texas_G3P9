@@ -1,4 +1,3 @@
-//This is used for get your url of hosting, just copy it and connect it to an uptime website. Well, you can use uptimerobot as example for 14/7 hosting.
 const express = require('express');
 
 const server = express();

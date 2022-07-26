@@ -1,10 +1,5 @@
-body:
-- type: checkboxes
-  id: operating-systems
-  attributes:
-    label: Which operating systems have you used?
-    description: You may select more than one.
-    options:
-      - label: macOS
-      - label: Windows
-      - label: Linux
+blank_issues_enabled: false
+contact_links:
+  - name: Akarui Support
+    url: https://discord.gg/JTwTGTDcsj
+    about: Contact to Akarui Supports to get fast replies.
